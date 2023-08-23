@@ -41,6 +41,6 @@ int main(int ac, char **argv)
 	}
 
 	fclose(file_stream);
-	free(line_buffer);
+	free(line_buffer), free(monty_data.opcode_and_arg);
 	return (EXIT_SUCCESS);
 }
