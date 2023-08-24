@@ -74,96 +74,81 @@ head node */
 	return (new_node);
 }
 
-/* /\** */
-/*  * get_dnodeint_at_index - Returns the nth node of a dlistint_t li\ */
-/* nked list. */
-/*  * @head: Pointer to the head of the list. */
-/*  * @index: Index of the node, starting from 0. */
-/*  * */
-/*  * Return: Pointer to the nth node, or NULL if the node does not e\ */
-/* xist. */
-/*  *\/ */
-/* stack_t *get_dnodeint_at_index(stack_t *head, unsigned int i\ */
-/* ndex) */
-/* { */
-/* 	unsigned int count = 0; */
-/* 	dlistint_t *current = head; */
-
-/* 	while (current != NULL) */
-/* 	{ */
-/* 		if (count == index) */
-/* 			return (current); */
-
-/* 		current = current->next; */
-/* 		count++; */
-/* 	} */
-
-/* 	return (NULL); */
-/* } */
-
-/* /\** */
-/*  * sum_dlistint - Returns the sum of all data (n) in a dlistint_t \ */
-/* linked list. */
-/*  * @head: Pointer to the head of the list. */
-/*  * */
-/*  * Return: Sum of all data values, or 0 if the list is empty. */
-/*  *\/ */
-/* int add_dlist(stack_t *head) */
-/* { */
-/* 	int sum = 0; */
-/* 	stack_t *current = head; */
-
-/* 	while (current != NULL) */
-/* 	{ */
-/* 		sum += current->n; */
-/* 		current = current->next; */
-/* 	} */
-
-/* 	return (sum); */
-/* } */
 
 /**
- * delete_dnodeint_at_index - Deletes the node at a given index.
- * @head: Pointer to a pointer to the head of the list.
- * @index: Index of the node to be deleted. Index starts at 0.
+ * add_dnode_end - Adds a new node at the end of a dlistint_t list\
+.
+ * @head: A triple pointer to the head node of the list.
+ * @n: The integer data to be added to the new node.
  *
- * Return: 1 if succeeded, -1 if failed.
+ * This function creates a new node with the provided integer data
+ and adds
+ * it to the beginning of the given dlistint_t doubly-linked list.
+ The head
+ * pointer is updated to point to the new node, and the neighborin
+g nodes'
+ * pointers are adjusted accordingly.
+ *
+ * Return: A pointer to the newly added node, or NULL on failure.
  */
-/* int delete_dnodeint_at_index(dlistint_t **head, unsigned int index\ */
-/* ) */
-/* { */
-/* 	unsigned int count = 0; */
-/* 	dlistint_t *current = *head; */
+stack_t *add_dnode_end(stack_t **head, const int n)
+{
+    stack_t *new_node, *current;
 
-/* 	if (head == NULL || *head == NULL) */
-/* 		return (-1); */
+    /* Create new node */
+    new_node = malloc(sizeof(stack_t));
+    if (new_node == NULL)
+        return (NULL);  /* Check for memory allocation failure */
 
-/* 	if (index == 0) */
-/* 	{ */
-/* 		*head = current->next; */
-/* 		if (current->next != NULL) */
-/* 			current->next->prev = NULL; */
-/* 		free(current); */
-/* 		return (1); */
-/* 	} */
+    new_node->n = n;  /* Assign the provided data to the new node */
+    new_node->next = NULL; /* The new node will be the last node */
 
-/* 	while (current != NULL) */
-/* 	{ */
-/* 		if (count == index) */
-/* 		{ */
-/* 			if (current->next != NULL) */
-/* 				current->next->prev = current->prev; */
+    if (*head == NULL)
+    {
+        /*If list is empty, new node becomes the head */
+        new_node->prev = NULL;
+        *head = new_node;
+        return (new_node);
+    }
+    /* Traverse to the last node */
+    current = *head;
+    while (current->next != NULL)
+    {
+        current = current->next;
+    }
 
-/* 			if (current->prev != NULL) */
-/* 				current->prev->next = current->next; */
+    /* Connect new node to existing nodes */
+    new_node->prev = current;  /* There's no previous node */
+    current->next = new_node;
 
-/* 			free(current); */
-/* 			return (1); */
-/* 		} */
+    return (new_node);   /* Return the new node */
+}
 
-/* 		current = current->next; */
-/* 		count++; */
-/* 	} */
+/**
+ * pop_end - delete the value at the end of the stack
+ * @container: head pointer to doubly linked list (stack)
+ * @line_number: current line number of execution
+ *
+ * Return: nothing
+ */
+void pop_end(stack_t **container, unsigned int line_number)
+{
+    stack_t *temp;
 
-/* 	return (-1); */
-/* } */
+    if (*container == NULL)
+    {
+        /* Stack is empty */
+        fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+
+    temp = *container;
+
+    if (temp->prev)
+        /* Update the previous node's next pointer */
+        temp->prev->next = NULL;
+
+	*container = temp->prev;
+
+	free(temp);
+}

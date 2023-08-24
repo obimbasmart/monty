@@ -15,7 +15,16 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "push", push },
 		{ "pall", pall },
 		{ "pint", pint },
-		{ "pop", pop }
+		{ "pop", pop },
+		{ "swap", swap },
+		{ "add", add },
+		{ "nop", nop },
+		{ "sub", sub },
+		{ "div", div },
+		{ "mul", mul },
+		{ "mod", mod },
+		{ "pchar", pchar },
+		{ "pstr", pstr }
 	};
 
 	arr_size = 2;
@@ -81,6 +90,11 @@ void tokenize_string(char *str)
 	token = strtok(str, delim);
 	while (token != NULL || index < 2)
 	{
+		/* Handle comments */
+		if (token[0] == '#')
+        {
+            break;
+        }
 		toks[index] = token;
 		index++;
 
