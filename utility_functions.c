@@ -89,3 +89,20 @@ void tokenize_string(char *str)
 	toks[index] = NULL;
 
 }
+
+/**
+ * free_and_close_resources - free all dynamically allocated
+ * memory and close open file streams
+ *
+ * @file_stream: open file stream passed to program
+ * @line_buffer: line buffer used for getline function
+ *
+ * Return: nothing
+ */
+void free_and_close_resources(FILE *file_stream, char *line_buffer)
+{
+	free(monty_data.opcode_and_arg);
+	free(line_buffer);
+	fclose(file_stream);
+	free_container(&monty_data.container);
+}

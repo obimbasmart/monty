@@ -71,11 +71,12 @@ void initialize_monty_data(void);
 void error_handler(char *error_msg, char *file_name);
 void tokenize_string(char *str);
 void (*get_function(char *opcode))(stack_t **container, unsigned int);
-
+void free_and_close_resources(FILE *file_stream, char *line_buffer);
 
 /* helper functions for stack and queue ops */
 void add_dnodeint_end(stack_t **head, const int n);
 void add_dnodeint(stack_t **head, const int n);
+void free_container(stack_t **head);
 
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);

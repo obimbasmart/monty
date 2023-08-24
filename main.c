@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
 monty_data_t monty_data; /* define global variable */
@@ -39,12 +40,12 @@ int main(int ac, char **argv)
 		{
 			dprintf(STDERR_FILENO, "L%lu: unknown instruction %s\n",
 					monty_data.line_number, monty_data.opcode_and_arg[0]);
+			free_and_close_resources(file_stream, line_buffer);
 			exit(EXIT_FAILURE);
 		}
 
 	}
 
-	fclose(file_stream);
-	free(line_buffer), free(monty_data.opcode_and_arg);
+	free_and_close_resources(file_stream, line_buffer);
 	return (EXIT_SUCCESS);
 }

@@ -67,3 +67,27 @@ void add_dnodeint_end(stack_t **head, const int n)
 
 }
 
+/**
+ * free_container - function that frees a dlistint_t list.
+ * @head: head node of dlistint_t list
+ *
+ * Return: Nothing
+ */
+void free_container(stack_t **head)
+{
+	stack_t *ptr_copy;
+
+	if (!head)
+		return;
+
+	while (*head)
+	{
+		ptr_copy = (*head)->next;
+		free(*head);
+		*head = ptr_copy;
+	}
+
+	free(*head);
+	head = NULL;
+}
+
