@@ -9,9 +9,18 @@
  */
 void push(stack_t **container, unsigned int line_number)
 {
-	int n = atoi(monty_data.opcode_and_arg[1]);
+	char *endptr;
+	long int n;
 
-	(void)line_number; /* unused variable */
+	/* check if argument is passd to push */
+	if (!monty_data.opcode_and_arg[1])
+		error_handler(line_number, "usage: push integer", NULL, NULL);
+
+	n = strtol(monty_data.opcode_and_arg[1], &endptr, 10);
+
+	/* check if argument is a valid  integer */
+	if (*endptr != '\0' || !monty_data.opcode_and_arg[1])
+		error_handler(line_number, "usage: push integer", NULL, NULL);
 
 	/* if insertion is for the begening of the node */
 	if (!(*container) || monty_data.mode == QUEUE)

@@ -52,6 +52,8 @@ typedef struct instruction_s
  *	arr[0] = opcode(push), arr[1] = arg(3)
  *	for opcodes that does not require an arg, arr[1] = NULL
  *
+ * @file_stream: the open file stream passed to argument
+ * @line_buffer: string passed to getline for reading line by line
  * @container: doubly linked list serves as the container for monty
  *
  * Description: global variables for the program
@@ -61,6 +63,8 @@ typedef struct global_vars
 	size_t mode;
 	size_t line_number;
 	char **opcode_and_arg;
+	FILE *file_stream;
+	char *line_buffer;
 	stack_t *container;
 } monty_data_t;
 
@@ -68,10 +72,10 @@ extern monty_data_t monty_data;
 
 /* utility functions */
 void initialize_monty_data(void);
-void error_handler(char *error_msg, char *file_name);
+void error_handler(unsigned int, char *err_msg, char *filename, char *opcode);
 void tokenize_string(char *str);
 void (*get_function(char *opcode))(stack_t **container, unsigned int);
-void free_and_close_resources(FILE *file_stream, char *line_buffer);
+void free_and_close_resources(void);
 
 /* helper functions for stack and queue ops */
 void add_dnodeint_end(stack_t **head, const int n);

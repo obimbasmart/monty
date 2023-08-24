@@ -14,7 +14,7 @@ void add_dnodeint(stack_t **head, const int n)
 	new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
-		error_handler("Error: malloc failed", NULL);
+		error_handler(0, "Error: malloc failed", NULL, NULL);
 
 	new_node->n = n;
 	new_node->next = NULL;
@@ -46,7 +46,7 @@ void add_dnodeint_end(stack_t **head, const int n)
 	new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
-		error_handler("Error: malloc failed", NULL);
+		error_handler(0, "Error: malloc failed", NULL, NULL);
 
 	new_node->n = n;
 	new_node->next = NULL;

@@ -36,6 +36,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
  */
 void initialize_monty_data(void)
 {
+	monty_data.line_buffer = NULL;
 	monty_data.mode = STACK;
 	monty_data.container = NULL;
 	monty_data.line_number = 0;
@@ -46,18 +47,26 @@ void initialize_monty_data(void)
  * error_handler - handle error and print error msg
  * @error_msg: error message associated for the error
  * @file_name: name of file passed to monty program
+ * @line_number: command line that caused the error
+ * @opcode: command that caused the error
  *
  * Return nothing
  */
-void error_handler(char *error_msg, char *file_name)
+void error_handler(unsigned int line_number, char *error_msg,
+		   char *file_name, char *opcode)
 {
 	if (file_name)
-	{
 		dprintf(STDERR_FILENO, "%s %s\n", error_msg, file_name);
-		exit(EXIT_FAILURE);
-	}
 
-	dprintf(STDERR_FILENO, "%s\n", error_msg);
+	else if (line_number)
+		dprintf(STDERR_FILENO, "L%u: %s\n", line_number, error_msg);
+
+	else if (opcode)
+		dprintf(STDERR_FILENO, "L%u: %s %s", line_number, error_msg, opcode);
+	else
+		dprintf(STDERR_FILENO, "%s\n", error_msg);
+
+	free_and_close_resources();
 	exit(EXIT_FAILURE);
 }
 
@@ -76,7 +85,7 @@ void tokenize_string(char *str)
 	const char *delim = " \b\t\n";
 
 	if (toks == NULL)
-		error_handler("Error: malloc failed", NULL);
+		error_handler(0, "Error: malloc failed", NULL, NULL);
 
 	token = strtok(str, delim);
 	while (token != NULL || index < 2)
@@ -94,15 +103,12 @@ void tokenize_string(char *str)
  * free_and_close_resources - free all dynamically allocated
  * memory and close open file streams
  *
- * @file_stream: open file stream passed to program
- * @line_buffer: line buffer used for getline function
- *
  * Return: nothing
  */
-void free_and_close_resources(FILE *file_stream, char *line_buffer)
+void free_and_close_resources(void)
 {
 	free(monty_data.opcode_and_arg);
-	free(line_buffer);
-	fclose(file_stream);
+	free(monty_data.line_buffer);
+	fclose(monty_data.file_stream);
 	free_container(&monty_data.container);
 }
