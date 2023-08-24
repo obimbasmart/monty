@@ -109,6 +109,8 @@ void free_and_close_resources(void)
 {
 	free(monty_data.opcode_and_arg);
 	free(monty_data.line_buffer);
-	fclose(monty_data.file_stream);
+
+	if (monty_data.file_stream)
+		fclose(monty_data.file_stream);
 	free_container(&monty_data.container);
 }

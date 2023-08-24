@@ -3,5 +3,5 @@ push 6
 push 8
 pall
 push 88
-push
+push tka
 pall
