@@ -39,7 +39,7 @@ void initialize_monty_data(void)
 	monty_data.mode = STACK;
 	monty_data.container = NULL;
 	monty_data.line_number = 0;
-	monty_data.opcode_and_arg = NULL;
+	monty_data.opcode_and_arg = malloc(sizeof(char *) * TOKEN_BUFFERSIZE);
 }
 
 /**
@@ -70,8 +70,8 @@ void error_handler(char *error_msg, char *file_name)
  */
 void tokenize_string(char *str)
 {
-	int buf = TOKEN_BUFFERSIZE, index = 0;
-	char **toks = malloc(buf * sizeof(char *));
+	int index = 0;
+	char **toks = monty_data.opcode_and_arg;
 	char *token;
 	const char *delim = " \b\t\n";
 
@@ -88,5 +88,4 @@ void tokenize_string(char *str)
 	}
 	toks[index] = NULL;
 
-	monty_data.opcode_and_arg = toks;
 }

@@ -13,7 +13,7 @@
 
 #define STACK 1
 #define QUEUE 0
-#define TOKEN_BUFFERSIZE 1024
+#define TOKEN_BUFFERSIZE 120
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -48,7 +48,7 @@ typedef struct instruction_s
 /**
  * struct global_vars - serves as a container for all global variables
  * @mode: this is a flag, specifying the mode of the container (stack | queue)
- * @line_number: line number of the command being executed at any point in time.
+ * @line_number: command line number being executed at any point in time
  * @opcode_and_arg: a null terminated array of two elements:
  *	arr[0] = opcode(push), arr[1] = arg(3)
  *	for opcodes that does not require an arg, arr[1] = NULL

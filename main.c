@@ -50,12 +50,8 @@ int main(int ac, char **argv)
 	}
 
 	fclose(file_stream);
-	free(line_buffer);
-	/* for (i = 0; i < 2; i++) */
-	/* { */
-	/* 	if (monty_data.opcode_and_arg[i]) */
-	/* 		free(monty_data.opcode_and_arg[i]); */
-	/* } */
-	free(monty_data.opcode_and_arg);
+
+	free(line_buffer), free(monty_data.opcode_and_arg);
+
 	return (EXIT_SUCCESS);
 }
