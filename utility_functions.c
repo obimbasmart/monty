@@ -58,11 +58,12 @@ void error_handler(unsigned int line_number, char *error_msg,
 	if (file_name)
 		dprintf(STDERR_FILENO, "%s %s\n", error_msg, file_name);
 
+	else if (opcode && line_number)
+		dprintf(STDERR_FILENO, "L%u: %s %s\n", line_number, error_msg, opcode);
+
 	else if (line_number)
 		dprintf(STDERR_FILENO, "L%u: %s\n", line_number, error_msg);
 
-	else if (opcode)
-		dprintf(STDERR_FILENO, "L%u: %s %s", line_number, error_msg, opcode);
 	else
 		dprintf(STDERR_FILENO, "%s\n", error_msg);
 
