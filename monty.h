@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <ctype.h>
 #include <string.h>
 
 #define STACK 1
@@ -47,7 +48,7 @@ typedef struct instruction_s
 /**
  * struct global_vars - serves as a container for all global variables
  * @mode: this is a flag, specifying the mode of the container (stack | queue)
- * @line_number: line number of the command being executed at any point in timei
+ * @line_number: line number of the command being executed at any point in time.
  * @opcode_and_arg: a null terminated array of two elements:
  *	arr[0] = opcode(push), arr[1] = arg(3)
  *	for opcodes that does not require an arg, arr[1] = NULL
@@ -76,5 +77,12 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int);
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);
 void pall(stack_t **container, unsigned int line_number);
+void pint(stack_t **container, unsigned int line_number);
+void pop(stack_t **container, unsigned int line_number);
+
+/* Stack & queue manipulators */
+stack_t *add_dnode(stack_t **head, const int n);
+stack_t *add_dnode_end(stack_t **head, const int n);
+void print_dlist(const stack_t *h);
 
 #endif /* MONTY_H */

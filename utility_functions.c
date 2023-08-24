@@ -2,7 +2,7 @@
 
 
 /**
- * get_function - get the function pointer base on the opcode
+ * get_function - get the function pointer based on the opcode
  * @opcode: the opcode
  *
  * Return: function pointer
@@ -13,7 +13,9 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 
 	instruction_t arr_funcs[] = {
 		{ "push", push },
-		{ "pall", pall}
+		{ "pall", pall },
+		{ "pint", pint },
+		{ "pop", pop }
 	};
 
 	arr_size = 2;

@@ -14,6 +14,7 @@ int main(int ac, char **argv)
 	FILE *file_stream;
 	char *line_buffer, *file_name;
 	size_t n_line;
+	/* int i; */
 	void (*func)(stack_t **, unsigned int); /* function pointer */
 
 	n_line = 0;
@@ -27,6 +28,14 @@ int main(int ac, char **argv)
 	file_stream = fopen(file_name, "r");
 	if (file_stream == NULL)
 		error_handler("Error: Can't open file", file_name);
+
+	/* Allocate memory for opcode_and_arg */
+	monty_data.opcode_and_arg = malloc(sizeof(char *) * 2);
+	if (monty_data.opcode_and_arg == NULL)
+	{
+		fprintf(stderr, "Memory allocation failed\n");
+		return (EXIT_FAILURE);
+	}
 
 	while (getline(&line_buffer, &n_line, file_stream) != -1)
 	{
@@ -42,5 +51,11 @@ int main(int ac, char **argv)
 
 	fclose(file_stream);
 	free(line_buffer);
+	/* for (i = 0; i < 2; i++) */
+	/* { */
+	/* 	if (monty_data.opcode_and_arg[i]) */
+	/* 		free(monty_data.opcode_and_arg[i]); */
+	/* } */
+	free(monty_data.opcode_and_arg);
 	return (EXIT_SUCCESS);
 }
