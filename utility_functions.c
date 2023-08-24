@@ -41,6 +41,8 @@ void initialize_monty_data(void)
 	monty_data.container = NULL;
 	monty_data.line_number = 0;
 	monty_data.opcode_and_arg = malloc(sizeof(char *) * TOKEN_BUFFERSIZE);
+	if (monty_data.opcode_and_arg) /* malloc failed */
+		error_handler(0, "Error: malloc failed", NULL, NULL);
 }
 
 /**
