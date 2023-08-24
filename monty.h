@@ -73,8 +73,14 @@ void tokenize_string(char *str);
 void (*get_function(char *opcode))(stack_t **container, unsigned int);
 
 
+/* helper functions for stack and queue ops */
+void add_dnodeint_end(stack_t **head, const int n);
+void add_dnodeint(stack_t **head, const int n);
+
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);
 void pall(stack_t **container, unsigned int line_number);
+void stack(stack_t **container, unsigned int line_number);
+void queue(stack_t **container, unsigned int line_number);
 
 #endif /* MONTY_H */

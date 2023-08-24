@@ -13,10 +13,12 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 
 	instruction_t arr_funcs[] = {
 		{ "push", push },
-		{ "pall", pall}
+		{ "pall", pall },
+		{ "stack", stack },
+		{ "queue", queue }
 	};
 
-	arr_size = 2;
+	arr_size = 4;
 	index = 0;
 	while (index < arr_size)
 	{

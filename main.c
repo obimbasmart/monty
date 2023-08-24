@@ -20,7 +20,6 @@ int main(int ac, char **argv)
 	file_name = argv[1];
 	line_buffer = NULL;
 	initialize_monty_data();
-
 	if (ac != 2)
 		error_handler("USAGE: monty file", NULL);
 
@@ -31,12 +30,17 @@ int main(int ac, char **argv)
 	while (getline(&line_buffer, &n_line, file_stream) != -1)
 	{
 		monty_data.line_number += 1;
-
 		tokenize_string(line_buffer);
 
 		func = get_function(monty_data.opcode_and_arg[0]);
 		if (func)
 			func(&monty_data.container, monty_data.line_number);
+		else
+		{
+			dprintf(STDERR_FILENO, "L%lu: unknown instruction %s\n",
+					monty_data.line_number, monty_data.opcode_and_arg[0]);
+			exit(EXIT_FAILURE);
+		}
 
 	}
 
