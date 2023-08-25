@@ -18,6 +18,9 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "queue", queue }
 	};
 
+	if (!opcode)
+		return (NULL);
+
 	arr_size = 4;
 	index = 0;
 	while (index < arr_size)
