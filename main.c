@@ -32,16 +32,16 @@ int main(int ac, char **argv)
 		monty_data.line_number += 1;
 		tokenize_string(monty_data.line_buffer);
 
+		if (!monty_data.opcode_and_arg[0])
+			continue;
+
 		func = get_function(monty_data.opcode_and_arg[0]);
 		if (func)
 			func(&monty_data.container, monty_data.line_number);
 		else
-		{
 			error_handler(monty_data.line_number, "unknown instruction",
 					NULL, monty_data.opcode_and_arg[0]);
 
-			free_and_close_resources();
-		}
 
 	}
 

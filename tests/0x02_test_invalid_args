@@ -1,7 +1,4 @@
-push 4
-push 6
-push 8
-pall
-push 88
-push tka
-pall
+push 1
+push     2
+
+push
