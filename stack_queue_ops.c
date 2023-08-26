@@ -22,19 +22,16 @@ void push(stack_t **container, unsigned int line_number)
 	if (*endptr != '\0' || !monty_data.opcode_and_arg[1])
 		error_handler(line_number, "usage: push integer", NULL, NULL);
 
-	/* if insertion is for the begening of the node */
+	/* if insertion is for QUEUE */
 	if (!(*container) || monty_data.mode == QUEUE)
 	{
 		(add_dnodeint_end(container, n));
 		return;
 	}
 
-	/* if insertion is at the end of the node */
+	/* insertion for STACK */
 	if (monty_data.mode == STACK)
-	{
 		(add_dnodeint(container, n));
-		return;
-	}
 
 
 }
@@ -65,6 +62,21 @@ void pall(stack_t **container, unsigned int line_number)
 	}
 
 	container_copy = *container;
+}
+
+/**
+ * pint - prints the value at the top of the stack, followed by a new line
+ * @container: head pointer to doubly linked list
+ * @line_number: current line number in execution
+ *
+ * Return: nothing
+ */
+void pint(stack_t **container, unsigned int line_number)
+{
+	if (is_empty(container))
+		error_handler(line_number, "can't pint, stack empty", NULL, NULL);
+
+	printf("%d\n", (*container)->n);
 }
 
 /**

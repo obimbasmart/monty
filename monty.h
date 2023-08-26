@@ -81,10 +81,12 @@ void free_and_close_resources(void);
 void add_dnodeint_end(stack_t **head, const int n);
 void add_dnodeint(stack_t **head, const int n);
 void free_container(stack_t **head);
+int is_empty(stack_t **head);
 
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);
 void pall(stack_t **container, unsigned int line_number);
+void pint(stack_t **, unsigned int);
 void stack(stack_t **container, unsigned int line_number);
 void queue(stack_t **container, unsigned int line_number);
 

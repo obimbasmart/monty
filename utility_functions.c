@@ -15,13 +15,14 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "push", push },
 		{ "pall", pall },
 		{ "stack", stack },
+		{ "pint", pint },
 		{ "queue", queue }
 	};
 
 	if (!opcode)
 		return (NULL);
 
-	arr_size = 4;
+	arr_size = 5;
 	index = 0;
 	while (index < arr_size)
 	{

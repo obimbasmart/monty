@@ -91,3 +91,17 @@ void free_container(stack_t **head)
 	head = NULL;
 }
 
+/**
+ * is_empty - check if stack, or queue is empty
+ * @head: head pointer to doubly linked list
+ *
+ * Return: 1 if empty, 0 if not
+ */
+int is_empty(stack_t **head)
+{
+	if (!head || !(*head))
+		return (1);
+
+	return (0);
+}
+
