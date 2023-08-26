@@ -14,17 +14,18 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 	instruction_t arr_funcs[] = {
 		{ "push", push },
 		{ "pall", pall },
+		{ "pint", pint },
 		{ "pop", pop },
 		{ "swap", swap },
+		{ "add", add },
 		{ "stack", stack },
-		{ "pint", pint },
 		{ "queue", queue }
 	};
 
 	if (!opcode)
 		return (NULL);
 
-	arr_size = 6;
+	arr_size = 8;
 	index = 0;
 	while (index < arr_size)
 	{

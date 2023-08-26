@@ -82,12 +82,16 @@ void add_dnodeint_end(stack_t **head, const int n);
 void add_dnodeint(stack_t **head, const int n);
 void free_container(stack_t **head);
 int is_empty(stack_t **head);
+int is_less_than_two(stack_t **head);
+void delete_first_node(stack_t **head);
 
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);
 void pall(stack_t **container, unsigned int line_number);
 void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
+void add(stack_t **, unsigned int);
 void stack(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);
 

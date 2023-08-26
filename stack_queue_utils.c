@@ -120,7 +120,3 @@ int is_less_than_two(stack_t **head)
 	return (0);
 }
 
-
-
-
-
