@@ -24,6 +24,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "mod", mod },
 		{ "pchar", pchar },
 		{ "pstr", pstr },
+		{ "rotl", rotl },
 		{ "stack", stack },
 		{ "queue", queue }
 	};
@@ -31,7 +32,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 	if (!opcode)
 		return (NULL);
 
-	arr_size = 14;
+	arr_size = 15;
 	index = 0;
 	while (index < arr_size)
 	{

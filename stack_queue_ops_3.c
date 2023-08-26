@@ -99,3 +99,38 @@ void pstr(stack_t **container, unsigned int line_number)
 	printf("%c", '\n');
 }
 
+
+/**
+ * rotl - rotates the stack to the top - The top element of the stack becomes
+ * the last one, and the second top element of the stack becomes the first one
+ *
+ * @container: head pointer to stack/queue
+ * @line_number: current line number in execution
+ *
+ * Return: nothing
+ */
+void rotl(stack_t **container, unsigned int line_number)
+{
+	stack_t *next_node, *last_node;
+
+	(void)line_number; /* unused param */
+	if (is_less_than_two(container))
+		return;
+
+	last_node = *container;
+	next_node = (*container)->next;
+
+	/* get the last node */
+	while (last_node->next)
+		last_node = last_node->next;
+
+	(*container)->prev = last_node;
+	last_node->next = *container;
+	(*container)->next->prev = NULL;
+	(*container)->next = NULL;
+
+	*container = next_node;
+
+}
+
+
