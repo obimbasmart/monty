@@ -93,6 +93,10 @@ void pint(stack_t **, unsigned int);
 void pop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
+void mul(stack_t **, unsigned int);
+void sub(stack_t **, unsigned int);
+void _div(stack_t **, unsigned int);
+void mod(stack_t **, unsigned int);
 void stack(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);
 

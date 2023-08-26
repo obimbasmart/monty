@@ -60,3 +60,45 @@ void add(stack_t **container, unsigned int line_number)
 	add_dnodeint(container, n);
 }
 
+/**
+ * sub -  subtracts the top element of the stack from the second top element
+ * @container: head pointer to stack/queue
+ * @line_number: current line number in execution
+ *
+ * Return: nothing
+ */
+void sub(stack_t **container, unsigned int line_number)
+{
+	int n;
+
+	if (is_less_than_two(container))
+		error_handler(line_number, "can't sub, stack too short", NULL, NULL);
+
+	n = (*container)->next->n - (*container)->n;
+	delete_first_node(container);
+	delete_first_node(container);
+	add_dnodeint(container, n);
+}
+
+
+/**
+ * _div - dividess the top element of the stack by the second top element
+ * @container: head pointer to stack/queue
+ * @line_number: current line number in execution
+ *
+ * Return: nothing
+ */
+void _div(stack_t **container, unsigned int line_number)
+{
+	int n;
+
+	if (is_less_than_two(container))
+		error_handler(line_number, "can't div, stack too short", NULL, NULL);
+	if ((*container)->n == 0)
+		error_handler(line_number, "division by zero", NULL, NULL);
+
+	n = (*container)->n / (*container)->next->n;
+	delete_first_node(container);
+	delete_first_node(container);
+	add_dnodeint(container, n);
+}

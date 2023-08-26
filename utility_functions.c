@@ -18,6 +18,10 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "pop", pop },
 		{ "swap", swap },
 		{ "add", add },
+		{ "sub", sub },
+		{ "mul", mul },
+		{ "div", _div },
+		{ "mod", mod },
 		{ "stack", stack },
 		{ "queue", queue }
 	};
@@ -25,7 +29,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 	if (!opcode)
 		return (NULL);
 
-	arr_size = 8;
+	arr_size = 12;
 	index = 0;
 	while (index < arr_size)
 	{
