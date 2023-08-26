@@ -105,3 +105,22 @@ int is_empty(stack_t **head)
 	return (0);
 }
 
+/**
+ * is_less_than_two - check if no. of nodes is less
+ * than two elements
+ * @head: head pointer to doubly linked list
+ *
+ * Return: 1 if less than two, 0 if more than 2
+ */
+int is_less_than_two(stack_t **head)
+{
+	if (!head || !(*head) || !((*head)->next))
+		return (1);
+
+	return (0);
+}
+
+
+
+
+

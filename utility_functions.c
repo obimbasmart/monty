@@ -15,6 +15,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "push", push },
 		{ "pall", pall },
 		{ "pop", pop },
+		{ "swap", swap },
 		{ "stack", stack },
 		{ "pint", pint },
 		{ "queue", queue }
