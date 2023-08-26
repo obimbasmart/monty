@@ -87,7 +87,8 @@ int is_empty(stack_t **head);
 void push(stack_t **container, unsigned int line_number);
 void pall(stack_t **container, unsigned int line_number);
 void pint(stack_t **, unsigned int);
-void stack(stack_t **container, unsigned int line_number);
-void queue(stack_t **container, unsigned int line_number);
+void pop(stack_t **, unsigned int);
+void stack(stack_t **, unsigned int);
+void queue(stack_t **, unsigned int);
 
 #endif /* MONTY_H */

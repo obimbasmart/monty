@@ -14,6 +14,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 	instruction_t arr_funcs[] = {
 		{ "push", push },
 		{ "pall", pall },
+		{ "pop", pop },
 		{ "stack", stack },
 		{ "pint", pint },
 		{ "queue", queue }
@@ -22,7 +23,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 	if (!opcode)
 		return (NULL);
 
-	arr_size = 5;
+	arr_size = 6;
 	index = 0;
 	while (index < arr_size)
 	{
