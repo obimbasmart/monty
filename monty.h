@@ -84,6 +84,7 @@ void free_container(stack_t **head);
 int is_empty(stack_t **head);
 int is_less_than_two(stack_t **head);
 void delete_first_node(stack_t **head);
+int is_noop_opcode(char *opcode);
 
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);
