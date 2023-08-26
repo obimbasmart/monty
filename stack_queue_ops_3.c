@@ -44,3 +44,21 @@ void mod(stack_t **container, unsigned int line_number)
 	add_dnodeint(container, n);
 }
 
+/**
+ * pchar - prints the char at the top of the stack, followed by a new line
+ * @container: head pointer to stack/queue
+ * @line_number: current line number in execution
+ *
+ * Return: nothing
+ */
+void pchar(stack_t **container, unsigned int line_number)
+{
+	if (is_empty(container))
+		error_handler(line_number, "can't pchar, stack empty", NULL, NULL);
+
+	if (!((*container)->n > 31 && (*container)->n < 128))
+		error_handler(line_number, "can't pchar, value out of range", NULL, NULL);
+
+	printf("%c\n", (*container)->n);
+}
+

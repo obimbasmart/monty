@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <ctype.h>
 
 #define STACK 1
 #define QUEUE 0
@@ -97,6 +98,7 @@ void mul(stack_t **, unsigned int);
 void sub(stack_t **, unsigned int);
 void _div(stack_t **, unsigned int);
 void mod(stack_t **, unsigned int);
+void pchar(stack_t **, unsigned int);
 void stack(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);
 

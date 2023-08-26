@@ -22,6 +22,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 		{ "mul", mul },
 		{ "div", _div },
 		{ "mod", mod },
+		{ "pchar", pchar },
 		{ "stack", stack },
 		{ "queue", queue }
 	};
