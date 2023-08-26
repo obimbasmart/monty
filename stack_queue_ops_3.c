@@ -76,8 +76,6 @@ void pchar(stack_t **container, unsigned int line_number)
  */
 void pstr(stack_t **container, unsigned int line_number)
 {
-	size_t stack_length, index;
-	char *str;
 	stack_t *container_copy;
 
 	(void)line_number; /* unused variable */
@@ -87,23 +85,17 @@ void pstr(stack_t **container, unsigned int line_number)
 		return;
 	}
 
-	stack_length = get_container_size(*container);
-	str = malloc(sizeof(char) * (stack_length + 1));
-
-	index = 0;
 	container_copy = *container;
 	while (*container)
 	{
 		if (!(is_ascii((*container)->n)) || (*container)->n == 0)
 			break;
 
-		str[index] = (char)(*container)->n;
+		printf("%c", (*container)->n);
 		*container = (*container)->next;
-		index++;
 	}
 
 	*container = container_copy;
-	str[index] = '\n';
-	printf("%s", str);
+	printf("%c", '\n');
 }
 
