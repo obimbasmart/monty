@@ -82,7 +82,7 @@ void sub(stack_t **container, unsigned int line_number)
 
 
 /**
- * _div - dividess the top element of the stack by the second top element
+ * _div - dividess the second top element of the stack by top element
  * @container: head pointer to stack/queue
  * @line_number: current line number in execution
  *
@@ -97,7 +97,7 @@ void _div(stack_t **container, unsigned int line_number)
 	if ((*container)->n == 0)
 		error_handler(line_number, "division by zero", NULL, NULL);
 
-	n = (*container)->n / (*container)->next->n;
+	n = (*container)->next->n / (*container)->n;
 	delete_first_node(container);
 	delete_first_node(container);
 	add_dnodeint(container, n);
