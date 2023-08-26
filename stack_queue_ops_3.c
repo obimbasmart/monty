@@ -94,7 +94,7 @@ void pstr(stack_t **container, unsigned int line_number)
 	container_copy = *container;
 	while (*container)
 	{
-		if (!(is_ascii((*container)->n)))
+		if (!(is_ascii((*container)->n)) || (*container)->n == 0)
 			break;
 
 		str[index] = (char)(*container)->n;
