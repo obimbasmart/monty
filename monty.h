@@ -86,6 +86,8 @@ int is_empty(stack_t **head);
 int is_less_than_two(stack_t **head);
 void delete_first_node(stack_t **head);
 int is_noop_opcode(char *opcode);
+int is_ascii(int);
+size_t get_container_size(stack_t *head);
 
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);
@@ -99,6 +101,7 @@ void sub(stack_t **, unsigned int);
 void _div(stack_t **, unsigned int);
 void mod(stack_t **, unsigned int);
 void pchar(stack_t **, unsigned int);
+void pstr(stack_t **, unsigned int);
 void stack(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);
 

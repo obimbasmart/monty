@@ -62,3 +62,48 @@ void pchar(stack_t **container, unsigned int line_number)
 	printf("%c\n", (*container)->n);
 }
 
+
+/**
+ * pstr - prints the string starting at the top of the stack,
+ * followed by a new line. The integer stored in each element
+ * of the stack is treated as the ascii value of
+ * the character to be printed
+ *
+ * @container: head pointer to stack/queue
+ * @line_number: current line number in execution
+ *
+ * Return: nothing
+ */
+void pstr(stack_t **container, unsigned int line_number)
+{
+	size_t stack_length, index;
+	char *str;
+	stack_t *container_copy;
+
+	(void)line_number; /* unused variable */
+	if (is_empty(container))
+	{
+		printf("\n");
+		return;
+	}
+
+	stack_length = get_container_size(*container);
+	str = malloc(sizeof(char) * (stack_length + 1));
+
+	index = 0;
+	container_copy = *container;
+	while (*container)
+	{
+		if (!(is_ascii((*container)->n)))
+			break;
+
+		str[index] = (char)(*container)->n;
+		*container = (*container)->next;
+		index++;
+	}
+
+	*container = container_copy;
+	str[index] = '\n';
+	printf("%s", str);
+}
+
