@@ -11,22 +11,22 @@
  */
 void rotr(stack_t **container, unsigned int line_number)
 {
-	stack_t *head_copy, *last_node;
+	stack_t *last_node;
 
 	(void)line_number; /* unused param */
 	if (is_less_than_two(container))
 		return;
 
-	last_node = head_copy = *container;
+	last_node = *container;
 
 	/* get the last node */
 	while (last_node->next)
 		last_node = last_node->next;
 
-	(*container)->prev = last_node;
-	last_node->next = (*container)->next;
 	last_node->prev->next = NULL;
-	last_node->prev = NULL;
+	(*container)->prev = last_node;
+	last_node->next = NULL;
+	last_node->next = *container;
 
 	*container = last_node;
 
