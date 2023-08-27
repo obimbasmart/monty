@@ -33,7 +33,7 @@ void (*get_function(char *opcode))(stack_t **container, unsigned int)
 	if (!opcode)
 		return (NULL);
 
-	arr_size = 16;
+	arr_size = INSTRUCTION_COUNT;
 	index = 0;
 	while (index < arr_size)
 	{
@@ -98,22 +98,18 @@ void error_handler(unsigned int line_number, char *error_msg,
 void tokenize_string(char *str)
 {
 	int index = 0;
-	char **toks = monty_data.opcode_and_arg;
 	char *token;
 	const char *delim = " \b\t\n";
-
-	if (toks == NULL)
-		error_handler(0, "Error: malloc failed", NULL, NULL);
 
 	token = strtok(str, delim);
 	while (token != NULL || index < 2)
 	{
-		toks[index] = token;
+		monty_data.opcode_and_arg[index] = token;
 		index++;
 
 		token = strtok(NULL, delim);
 	}
-	toks[index] = NULL;
+	monty_data.opcode_and_arg[index] = NULL;
 
 }
 

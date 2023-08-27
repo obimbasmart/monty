@@ -43,22 +43,22 @@ int is_ascii(int n)
 }
 
 /**
- * get_container_size - get the no. of items in stack/queue
- * @head: head pointer to stack/queue
+ * get_last_node - get the last node of a doubly linked list
+ * @head: head pointer to list
  *
- * Return: integer
+ * Return: last_node - stack_t *
  */
-size_t get_container_size(stack_t *head)
+stack_t *get_last_node(stack_t **head)
 {
-	size_t stack_len = 0;
-	stack_t *head_copy = head;
+	stack_t *head_copy, *last_node;
 
-	while (head)
-	{
-		stack_len++;
-		head = head->next;
-	}
+	if (is_empty(head))
+		return (NULL);
 
-	head = head_copy;
-	return (stack_len);
+	last_node = head_copy = *head;
+	while (last_node->next)
+		last_node = last_node->next;
+
+	*head = head_copy;
+	return (last_node);
 }

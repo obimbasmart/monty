@@ -56,7 +56,7 @@ void pchar(stack_t **container, unsigned int line_number)
 	if (is_empty(container))
 		error_handler(line_number, "can't pchar, stack empty", NULL, NULL);
 
-	if (!((*container)->n > 31 && (*container)->n < 128))
+	if (!is_ascii((*container)->n))
 		error_handler(line_number, "can't pchar, value out of range", NULL, NULL);
 
 	printf("%c\n", (*container)->n);
@@ -117,12 +117,8 @@ void rotl(stack_t **container, unsigned int line_number)
 	if (is_less_than_two(container))
 		return;
 
-	last_node = *container;
 	next_node = (*container)->next;
-
-	/* get the last node */
-	while (last_node->next)
-		last_node = last_node->next;
+	last_node = get_last_node(container);
 
 	(*container)->prev = last_node;
 	last_node->next = *container;

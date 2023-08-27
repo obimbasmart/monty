@@ -22,17 +22,13 @@ void push(stack_t **container, unsigned int line_number)
 	if (*endptr != '\0' || !monty_data.opcode_and_arg[1])
 		error_handler(line_number, "usage: push integer", NULL, NULL);
 
-	/* if insertion is for QUEUE */
-	if (!(*container) || monty_data.mode == QUEUE)
-	{
-		(add_dnodeint_end(container, n));
-		return;
-	}
-
 	/* insertion for STACK */
 	if (monty_data.mode == STACK)
 		(add_dnodeint(container, n));
 
+	/* if insertion is for QUEUE */
+	else
+		(add_dnodeint_end(container, n));
 
 }
 

@@ -14,6 +14,8 @@
 #define STACK 1
 #define QUEUE 0
 #define TOKEN_BUFFERSIZE 120
+#define INSTRUCTION_COUNT 16
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -87,7 +89,7 @@ int is_less_than_two(stack_t **head);
 void delete_first_node(stack_t **head);
 int is_noop_opcode(char *opcode);
 int is_ascii(int);
-size_t get_container_size(stack_t *head);
+stack_t *get_last_node(stack_t **);
 
 /** stack and queue operations */
 void push(stack_t **container, unsigned int line_number);

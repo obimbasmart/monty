@@ -58,10 +58,7 @@ void add_dnodeint_end(stack_t **head, const int n)
 		return;
 	}
 
-	while (last_node->next)
-		last_node = last_node->next;
-
-
+	last_node = get_last_node(head);
 	last_node->next = new_node;
 	new_node->prev = last_node;
 
